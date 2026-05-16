@@ -25,9 +25,11 @@ public class BaseTest {
         Configuration.browser = "chrome";
         ChromeOptions options = new ChromeOptions();
         if (browser.equalsIgnoreCase("yandex")) {
-            String YandexBrowserBinaryPath = "C:\\Users\\Марина\\AppData\\Local\\Yandex\\YandexBrowser\\Application\\browser.exe";
-            options.setBinary(YandexBrowserBinaryPath);
-            Configuration.browserCapabilities = options;
+            String yandexBrowserBinaryPath = System.getProperty("yandexBrowserBinaryPath");
+            if (yandexBrowserBinaryPath != null && !yandexBrowserBinaryPath.isBlank()) {
+                options.setBinary(yandexBrowserBinaryPath);
+                Configuration.browserCapabilities = options;
+            }
         }
     }
 
