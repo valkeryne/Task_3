@@ -65,20 +65,17 @@ public class HomePage {
 
     @Step("Таб Булки активен")
     public boolean isActiveBunTab() {
-        String bunTabClasses =  bunTab.getAttribute("class");
-        return bunTabClasses != null && bunTabClasses.contains("tab_tab_type_current");
+        return isActiveTab(bunTab);
     }
 
     @Step("Таб Соусы активен")
     public boolean isActiveSauceTab() {
-        String sauceTabClasses =  sauceTab.getAttribute("class");
-        return sauceTabClasses != null && sauceTabClasses.contains("tab_tab_type_current");
+        return isActiveTab(sauceTab);
     }
 
     @Step("Таб Начинки активен")
     public boolean isActiveFillingTab() {
-        String fillingTabClasses =  fillingTab.getAttribute("class");
-        return fillingTabClasses != null && fillingTabClasses.contains("tab_tab_type_current");
+        return isActiveTab(fillingTab);
     }
 
     @Step("Блок с булками виден на экране")
@@ -96,7 +93,24 @@ public class HomePage {
         return isVisibleOnScrollConstructor(fillingBlock);
     }
 
+    @Step("Таб с булками не активен")
+    public boolean isNotActiveBunTab() {
+        return !isActiveTab(bunTab);
+    }
+
+    @Step("Блок с булками не виден на экране")
+    public boolean isNotVisibleBunBlock() {
+        return !isVisibleOnScrollConstructor(bunBlock);
+    }
+
     private boolean isVisibleOnScrollConstructor(SelenideElement element) {
         return Boolean.TRUE.equals(Selenide.executeJavaScript(visibleCheckerJsCode, element));
+    }
+
+    private boolean isActiveTab(SelenideElement tab) {
+        return tab.has(Condition.attributeMatching(
+                "class",
+                ".*tab_tab_type_current.*"
+        ));
     }
 }

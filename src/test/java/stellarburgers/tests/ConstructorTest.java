@@ -20,19 +20,19 @@ public class ConstructorTest extends BaseTest {
 
     @Test
     @DisplayName("Нажатие на таб Булки")
-    @Description("Блок Булки должен быть внутри скролла, таб должен иметь класс tab_tab_type_current")
+    @Description("Блок Булки должен быть внутри скролла, таб должен быть активным")
     public void bunTab() {
         homePage.clickSauceTab();
-        assertThat(homePage.isActiveBunTab())
-                .as("Таб с булками не должен иметь класс tab_tab_type_current")
-                .isFalse();
-        assertThat(homePage.isVisibleBunBlock())
+        assertThat(homePage.isNotActiveBunTab())
+                .as("Таб с булками не должен быть активным")
+                .isTrue();
+        assertThat(homePage.isNotVisibleBunBlock())
                 .as("Блок с булками не должен быть видимым")
-                .isFalse();
+                .isTrue();
 
         homePage.clickBunTab();
         assertThat(homePage.isActiveBunTab())
-                .as("Таб с булками должен иметь класс tab_tab_type_current")
+                .as("Таб с булками должен  быть активным")
                 .isTrue();
         assertThat(homePage.isVisibleBunBlock())
                 .as("Блок с булками должен быть видимым")
@@ -41,11 +41,11 @@ public class ConstructorTest extends BaseTest {
 
     @Test
     @DisplayName("Нажатие на таб Соусы")
-    @Description("Блок Соусы должен быть внутри скролла, таб должен иметь класс tab_tab_type_current")
+    @Description("Блок Соусы должен быть внутри скролла, таб должен быть активным")
     public void sauceTab() {
         homePage.clickSauceTab();
         assertThat(homePage.isActiveSauceTab())
-                .as("Таб с соусами должен иметь класс tab_tab_type_current")
+                .as("Таб с соусами должен быть активным")
                 .isTrue();
         assertThat(homePage.isVisibleSauceBlock())
                 .as("Блок с соусами должен быть видимым")
@@ -54,11 +54,11 @@ public class ConstructorTest extends BaseTest {
 
     @Test
     @DisplayName("Нажатие на таб Начинки")
-    @Description("Блок Начинки должен быть внутри скролла, таб должен иметь класс tab_tab_type_current")
+    @Description("Блок Начинки должен быть внутри скролла, таб должен быть активным")
     public void fillingTab() {
         homePage.clickFillingTab();
         assertThat(homePage.isActiveFillingTab())
-                .as("Таб с начинками должен иметь класс tab_tab_type_current")
+                .as("Таб с начинками должен быть активным")
                 .isTrue();
         assertThat(homePage.isVisibleFillingBlock())
                 .as("Блок с начинками должен быть видимым")
